@@ -16,3 +16,7 @@ h1{
     font-size: 2rem;
     margin-bottom: 2rem;
 }
+
+#portflio-active svg{
+    fill: #14213D
+}

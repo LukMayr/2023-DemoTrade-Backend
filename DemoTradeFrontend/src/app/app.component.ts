@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router'; 
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,17 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'DemoTrade';
+  private isUserLoggedIn: boolean = true;
+  constructor(private router: Router) {
+    this.checkUserLoggedIn();
+  }
+  
+  
+
+  private checkUserLoggedIn(){
+    if(!this.isUserLoggedIn){
+      this.router.navigate(['signup']);
+    }
+  }
+  
 }
