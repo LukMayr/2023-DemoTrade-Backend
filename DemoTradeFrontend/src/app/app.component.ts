@@ -15,6 +15,7 @@ export class AppComponent {
   
   
 
+  //TODO: Fix not able to navigate to login page
   private checkUserLoggedIn(){
     if(!this.isUserLoggedIn){
       this.router.navigate(['signup']);

@@ -8,6 +8,8 @@ import { ListItemComponent } from './list-item/list-item.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { PortfolioComponent } from './portfolio/portfolio.component';
 import { LogInComponent } from './log-in/log-in.component';
+import { MarketComponent } from './market/market.component';
+import { DiagramsComponent } from './diagrams/diagrams.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { LogInComponent } from './log-in/log-in.component';
     ListItemComponent,
     SignUpComponent,
     PortfolioComponent,
-    LogInComponent
+    LogInComponent,
+    MarketComponent,
+    DiagramsComponent
   ],
   imports: [
     BrowserModule,
