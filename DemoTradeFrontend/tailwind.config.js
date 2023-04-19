@@ -11,6 +11,8 @@ module.exports = {
         'primary': '#14213D',
         'secondary': '#FCA311',
         'back': '#E5E5E5',
+        'rise': '#0FC917',
+        'fall': '#F82020',
       },
     },
   },
