@@ -1,1 +1,18 @@
-<p>sign-up works!</p>
+<div class="w-screen h-screen flex felx-col items-center justify-center">
+    <div class="p-12 w-4/12 h-auto drop-shadow bg-back flex flex-col justify-center">
+        <img class="self-center" src="assets/images/Logo.svg" width="120" height="120" alt="Demo Trade Logo">
+        <!-- TODO: connect to backend -->
+        <form class="flex flex-col" action="">
+            <label class="mt-4" for="user-name">Enter a Username</label>
+            <input class="rounded p-2" id="user-name" placeholder="Max Mustermann" type="text">
+            <label class="mt-4" for="mail">Enter E-Mail</label>
+            <input class="rounded p-2" id="mail" placeholder="max.mustermann@example.com" type="text">
+            <label class="mt-4" for="password">Enter Password</label>
+            <input class="rounded p-2" id="password" placeholder="8-64 characters" type="password" >
+            <label class="mt-4" for="password">Retype Password</label>
+            <input class="rounded p-2" id="password" placeholder="*******" type="password" >
+            <input class="mt-6 rounded p-4 bg-primary text-white" type="button" value="Submit">
+        </form>
+        <a class="mt-4 underline self-center" href="/login">Already got a Account?</a>
+    </div>
+</div>
