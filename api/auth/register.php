@@ -9,6 +9,9 @@ session_start();
 //api works with this line when using Web but not with Postman
 $_POST = json_decode(file_get_contents('php://input'), true);
 
+$env = parse_ini_file(__DIR__ . '/../../.env');
+$salt = $env['SALT'];
+
 function validateEmail($email) : bool {
     return filter_var($email, FILTER_VALIDATE_EMAIL);
 }
@@ -30,6 +33,6 @@ if (!validatePassword($password)) {
     Response::error(HttpErrorCodes::HTTP_UNAUTHORIZED, "Password too short")->send();
 }
 
-$passwordHash = hash('sha256', $password.'feelingSalty');
+$passwordHash = hash('sha256', $password. $salt);
 
 UserController::getInstance()->createUserFromRequest($name, $email, $passwordHash);

@@ -5,7 +5,7 @@ require_once '../utils/Response.php';
 
 session_start();
 if (isset($_SESSION['user'])) {
-    Response::ok("User logged in")->send();
+    Response::ok("User logged in", $_SESSION['user'])->send();
 } else {
     Response::error(HttpErrorCodes::HTTP_UNAUTHORIZED, "You are not logged in")->send();
 }

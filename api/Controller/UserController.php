@@ -19,12 +19,12 @@ public static function getInstance(): UserController
     }
     private function __construct()
     {
-        self::$db = Connection::getInstance();
+        self::$db = Connection::getConnection();
     }
 
     public function getUser($userId)
     {
-        $statement = "SELECT user_id, username, email, password  FROM User where user_id = $userId;";
+        $statement = "SELECT * FROM dt_user where u_id = $userId;";
         $res = self::$db->query($statement);
 
         while ($row = $res->fetch_assoc()) {
@@ -39,7 +39,7 @@ public static function getInstance(): UserController
 
     public function getAllUsers()
     {
-        $statement = "SELECT user_id, username, email, password  FROM User;";
+        $statement = "SELECT * FROM dt_user;";
         $res = self::$db->query($statement);
         while ($row = $res->fetch_assoc()) {
             $myArray[] = $row;
@@ -53,9 +53,9 @@ public static function getInstance(): UserController
             Response::error(HttpErrorCodes::HTTP_BAD_REQUEST, "Missing parameters")->send();
         }
         $password = password_hash($password, PASSWORD_DEFAULT);
-        $statement = "INSERT INTO User (username, email, password) VALUES ('$userName', '$email', '$password');";
+        $statement = "INSERT INTO dt_user (u_username, u_email, u_password) VALUES ('$userName', '$email', '$password');";
         if (self::$db->query($statement)) {
-            $statement = "SELECT user_id, username, email, password  FROM User where user_id = (SELECT LAST_INSERT_ID())";
+            $statement = "SELECT u_id, u_username, u_email, u_password  FROM dt_user where u_id = (SELECT LAST_INSERT_ID())";
             if ($res = self::$db->query($statement)) {
                 while ($row = $res->fetch_assoc()) {
                     $myArray[] = $row;
@@ -72,7 +72,7 @@ public static function getInstance(): UserController
         if ($userId == null) {
             Response::error(HttpErrorCodes::HTTP_BAD_REQUEST, "Missing parameters")->send();
         }
-        $statement = "DELETE FROM User WHERE user_id = $userId;";
+        $statement = "DELETE FROM dt_user WHERE u_id = $userId;";
         if (self::$db->query($statement)) {
             Response::ok("User deleted")->send();
         } else {
@@ -82,7 +82,7 @@ public static function getInstance(): UserController
 
     public function getUserByEmail($email)
     {
-        $statement = "SELECT user_id, username, email, password  FROM User where email = '$email';";
+        $statement = "SELECT u_id, u_username, u_email, u_password  FROM dt_user where u_email = '$email';";
         $res = self::$db->query($statement);
 
         while ($row = $res->fetch_assoc()) {

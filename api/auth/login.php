@@ -9,6 +9,8 @@ session_start();
 
 //api works with this line when using Web but not with Postman
 $_POST = json_decode(file_get_contents('php://input'), true);
+$env = parse_ini_file(__DIR__ . '/../../.env');
+$salt = $env['SALT'];
 
 $email = $_POST['email'];
 $password = $_POST['password'];
@@ -26,9 +28,9 @@ if ($dbUser == null) {
     Response::error(HttpErrorCodes::HTTP_UNAUTHORIZED, "User not found")->send();
 }
 
-$passwordHash = hash('sha256', $password.'feelingSalty');
+$passwordHash = hash('sha256', $password. $salt);
 
-if(!password_verify($passwordHash, $dbUser['password'])) {
+if(!password_verify($passwordHash, $dbUser['u_password'])) {
     Response::error(HttpErrorCodes::HTTP_UNAUTHORIZED, "Wrong password")->send();
 }
 

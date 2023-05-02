@@ -5,35 +5,39 @@ class Connection{
     {
         $env = parse_ini_file(__DIR__ . '/../.env');
 
-        $host = $env['DB_HOST'];
-        $db   = $env['DB_NAME'];
-        $user = $env['DB_USER'];
-        $pass = $env['DB_PASS'];
+        $host = $env['HOST'];
+        $db   = $env['DBNAME'];
+        $user = $env['USER'];
+        $pass = $env['PASS'];
         if (self::$dbConnection == null){
-            try {
-                if(!self::$dbConnection = new mysqli($host, $user, $pass, $db)){
-                    throw new Exception("Connection failed: " . self::$dbConnection->connect_error);
-                }
-            } catch (Exception $e) {
-                echo "Connection failed: " . $e->getMessage();
+            self::$dbConnection = new mysqli($host, $user, $pass, $db);
+            if (self::$dbConnection->connect_error) {
+                die("Connection failed: " . self::$dbConnection->connect_error);
             }
-            return self::$dbConnection;
+
         }
+        return self::$dbConnection;
     }
 
     private static ?Connection $instance = null;
 
-    public static function getInstance(): mysqli
+    public static function getInstance(): Connection
     {
         if (self::$instance == null) {
+        echo("trying connection");
             self::$instance = new Connection();
         }
-        return self::$dbConnection;
+        echo("connected " + self::$instance);
+        return self::$instance;
     }
 
 
     private function __construct() {
         self::getConnection();
+        echo("connected" + self::$instance);
+        if(self::$instance != null){
+            print("suppa");
+        }
     }
 
 }
