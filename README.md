@@ -8,7 +8,7 @@ PHP
 
 ## Links
 
-[Frontend Github](https://github.com/Stenz123/2023-medt-taskmanager-frontend)
+[Frontend Github](https://github.com/LukMayr/DemoTrade/tree/main/DemoTradeFrontend)
 
 ## Run
 
