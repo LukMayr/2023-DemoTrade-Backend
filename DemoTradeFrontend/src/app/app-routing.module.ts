@@ -8,7 +8,8 @@ import { MarketComponent } from './market/market.component';
 import { DiagramsComponent } from './diagrams/diagrams.component';
 
 const routes: Routes = [
-  { path: '', component: PortfolioComponent },
+  { path: '', redirectTo: 'portfolio', pathMatch: 'full' },
+  { path: 'portfolio', component: PortfolioComponent },
   { path: 'signup', component: SignUpComponent },
   { path: 'login', component: LogInComponent },
   { path: 'market', component: MarketComponent },
