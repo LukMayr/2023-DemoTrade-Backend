@@ -13,6 +13,7 @@
             <input class="rounded p-2" id="password" placeholder="*******" type="password" >
             <input class="mt-6 rounded p-4 font-semibold text-xl cursor-pointer bg-primary text-white" type="button" value="Submit">
         </form>
-        <a class="mt-4 underline self-center" href="/login">Already got a Account?</a>
+        <a [routerLink]="['/login']"
+        class="mt-4 underline self-center" >Already got a Account?</a>
     </div>
 </div>
