@@ -80,9 +80,9 @@ public static function getInstance(): UserController
         }
     }
 
-    public function getUserByEmail($email)
+    public function getUserByUsername($username)
     {
-        $statement = "SELECT u_id, u_username, u_email, u_password  FROM dt_user where u_email = '$email';";
+        $statement = "SELECT u_id, u_username, u_email, u_password  FROM dt_user where u_username = '$username';";
         $res = self::$db->query($statement);
 
         while ($row = $res->fetch_assoc()) {
