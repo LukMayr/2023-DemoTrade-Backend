@@ -25,3 +25,6 @@ if ($requestType == 'GET') {
         Response::error(HttpErrorCodes::HTTP_BAD_REQUEST, "Missing parameters")->send();
     }
 }
+else{
+    Response::error(HttpErrorCodes::HTTP_BAD_REQUEST, "Invalid request type")->send();
+}

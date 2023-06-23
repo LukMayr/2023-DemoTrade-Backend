@@ -16,12 +16,9 @@ CREATE TABLE DT_CURRENCY(
 CREATE TABLE DT_PORTFOLIO(
                              P_ID INT NOT NULL AUTO_INCREMENT,
                              P_U_ID INT NOT NULL,
-                             P_C_ID INT NOT NULL,
                              CONSTRAINT PK_P_ID PRIMARY KEY ( P_ID ),
                              CONSTRAINT FK_P_U_ID FOREIGN KEY ( P_U_ID )
                                  REFERENCES DT_USER ( U_ID ),
-                             CONSTRAINT FK_P_C_ID FOREIGN KEY ( P_C_ID )
-                                 REFERENCES DT_CURRENCY ( C_ID )
 );
 
 CREATE TABLE DT_STOCK(
@@ -29,7 +26,10 @@ CREATE TABLE DT_STOCK(
                          S_P_ID INT NOT NULL,
                          S_QUANTITY decimal(32,8),
                          S_PRICE decimal(16,4),
+                         S_C_ID INT NOT NULL,
                          CONSTRAINT PK_S_ID PRIMARY KEY ( S_ID ),
                          CONSTRAINT FK_S_P_ID FOREIGN KEY ( S_P_ID )
-                             REFERENCES DT_PORTFOLIO ( P_ID )
+                             REFERENCES DT_PORTFOLIO ( P_ID ),
+                         CONSTRAINT FK_S_C_ID FOREIGN KEY ( S_C_ID )
+                             REFERENCES DT_CURRENCY ( C_ID )
 );

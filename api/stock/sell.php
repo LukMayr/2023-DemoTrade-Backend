@@ -15,3 +15,4 @@ $portfolioId = $_GET['portfolioId'];
 $stockId = $_GET['stockId'];
 $quantity = $_POST['quantity'];
 $price = $_POST['price'];
+

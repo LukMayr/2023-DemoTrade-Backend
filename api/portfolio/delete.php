@@ -7,6 +7,9 @@ session_start();
 if (!isset($_SESSION['user'])) {
     Response::error(HttpErrorCodes::HTTP_UNAUTHORIZED, "You are not logged in")->send();
 }
+if ($_SERVER['REQUEST_METHOD'] != 'DELETE') {
+    Response::error(HttpErrorCodes::HTTP_BAD_REQUEST, "Invalid request type")->send();
+}
 
 $user = $_SESSION['user'];
 

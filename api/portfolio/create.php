@@ -11,11 +11,13 @@ if (!isset($_SESSION['user'])) {
 $user = $_SESSION['user'];
 $u_id = $user['u_id'];
 
+if ($u_id == null) {
+    Response::error(HttpErrorCodes::HTTP_BAD_REQUEST, "You are not signed in")->send();
+}
+if($_SERVER['REQUEST_METHOD'] != 'POST'){
+    Response::error(HttpErrorCodes::HTTP_BAD_REQUEST, "Invalid request type")->send();
+}
+
 $portfolioController = PortfolioController::getInstance();
 
-if (isset($_POST['currencyId'])) {
-    $currencyId = $_POST['currencyId'];
-    $portfolioController->createPortfolio($u_id, $currencyId);
-} else {
-    Response::error(HttpErrorCodes::HTTP_BAD_REQUEST, "Missing parameters")->send();
-}
+$portfolioController->createPortfolio($u_id);

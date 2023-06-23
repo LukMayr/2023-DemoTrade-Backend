@@ -63,9 +63,9 @@ class PortfolioController
         return $portfolioDetails;
     }
 
-    public function createPortfolio($userId, $currencyId)
+    public function createPortfolio($userId)
     {
-        $statement = "INSERT INTO dt_portfolio (p_u_id, p_c_id) VALUES ($userId, $currencyId);";
+        $statement = "INSERT INTO dt_portfolio (p_u_id) VALUES ($userId);";
 
         if (self::$db->query($statement)) {
             Response::created("Portfolio created")->send();
