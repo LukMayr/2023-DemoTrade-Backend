@@ -8,7 +8,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { ListItemComponent } from './list-item/list-item.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { PortfolioComponent } from './portfolio/portfolio.component';
-import { LogInComponent } from './log-in/log-in.component';
+import { LoginComponent } from './log-in/log-in.component';
 import { MarketComponent } from './market/market.component';
 import { DiagramsComponent } from './diagrams/diagrams.component';
 import {ReactiveFormsModule} from "@angular/forms";
@@ -20,7 +20,7 @@ import {ReactiveFormsModule} from "@angular/forms";
     ListItemComponent,
     SignUpComponent,
     PortfolioComponent,
-    LogInComponent,
+    LoginComponent,
     MarketComponent,
     DiagramsComponent
   ],

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../auth/auth.service';
+import { User } from '../_model/user.model';
 
 @Component({
   selector: 'app-portfolio',
@@ -6,10 +8,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./portfolio.component.css']
 })
 export class PortfolioComponent implements OnInit {
+currentUser: User;
 
-  constructor() { }
+constructor(private authService: AuthService
+  ) {
+    
+   }
 
   ngOnInit(): void {
+    this.authService.user.subscribe(user => {
+      this.currentUser = user;
+    });
   }
 
 }

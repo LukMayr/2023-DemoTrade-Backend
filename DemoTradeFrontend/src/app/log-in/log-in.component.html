@@ -2,12 +2,21 @@
     <div class="p-12 w-4/12 h-auto drop-shadow bg-back flex flex-col justify-center">
         <img class="self-center" src="assets/images/Logo.svg" width="120" height="120" alt="Demo Trade Logo">
         <!-- TODO: connect to backend -->
-        <form [formGroup]="form" class="flex flex-col" action="">
+        <form [formGroup]="loginForm" 
+              class="flex flex-col"
+              (ngSubmit)="onSubmit()" action="">
             <label class="mt-4" for="user-name">Enter a Username</label>
-            <input class="rounded p-2" id="user-name" placeholder="Max Mustermann" type="text">
+            <input class="rounded p-2" formControlName="username" id="user-name" placeholder="Max Mustermann" type="text">
+
             <label class="mt-4" for="password">Enter Password</label>
-            <input class="rounded p-2" id="password" placeholder="8-64 characters" type="password" >
-            <input class="mt-6 rounded text-white font-semibold text-xl cursor-pointer p-4 bg-primary" type="button" value="Submit">
+            <input class="rounded p-2" formControlName="password" id="password" placeholder="8-64 characters" type="password" >
+
+            <button
+              [disabled]="!loginForm.valid"
+              class="mt-6 rounded text-white font-semibold text-xl cursor-pointer p-4 bg-primary" >
+              Login
+            </button>
+            <div class="mt-2" *ngIf="error">* Error: {{ error }}</div>
         </form>
       <a [routerLink]="['/signup']"
         class="mt-4 underline self-center"
