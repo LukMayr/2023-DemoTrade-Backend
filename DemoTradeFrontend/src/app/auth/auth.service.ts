@@ -33,7 +33,7 @@ export class AuthService {
   //   console.log("username: " + username + " password: " + password);
   //   return this.http
   //     .post<any>(`${environment.apiUrl}auth/login.php`, { username, password })
-  //     .pipe(
+  //     .pipe(p
   //       map(({username, token}) => {
   //         let user: User = {
   //           username: username,
@@ -57,23 +57,16 @@ export class AuthService {
     return this.http
       .post<any>(`${environment.apiUrl}auth/login.php`, { username, password })
       .pipe(
-        map(response => {
-          let user = {
-            username: response.username,
-            token: response.token,
-          };
-          let userString = JSON.stringify(user);
-          console.log(userString);
-          localStorage.setItem('currentUser', userString);
-          this.userSubject.next(user);
-          console.log(localStorage.getItem('currentUser'));
-          
-          console.log("user: " + user.username + " token: " + user.token);
-          
-          console.log(localStorage.getItem('currentUser'));
-          return user;
-        })
-      );
+        map(({token}) => {
+        let user: User = {
+        username: username,
+        token: token,
+      };
+      localStorage.setItem('currentUser', JSON.stringify(user));
+      this.userSubject.next(user);
+      return user;
+    })
+  );
   }
 
   
