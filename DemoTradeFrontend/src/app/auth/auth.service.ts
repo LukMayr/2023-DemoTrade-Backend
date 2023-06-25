@@ -16,20 +16,20 @@ export class AuthService {
   public user: Observable<User>;
 
   constructor(private http: HttpClient, private router: Router) {
-    
+
     this.userSubject = new BehaviorSubject<User>(
       JSON.parse(localStorage.getItem('currentUser') as string)
     );
     this.user = this.userSubject.asObservable();
 
   }
-  
+
   public get userValue(): User {
     return this.userSubject.value;
   }
 
   // login(username: string, password: string) {
-    
+
   //   console.log("username: " + username + " password: " + password);
   //   return this.http
   //     .post<any>(`${environment.apiUrl}auth/login.php`, { username, password })
@@ -44,18 +44,18 @@ export class AuthService {
   //         localStorage.setItem('currentUser', userString);
   //         this.userSubject.next(user);
   //         console.log(localStorage.getItem('currentUser'));
-          
+
   //         console.log("user: " + user.username + " token: " + user.token);
-          
+
   //         console.log(localStorage.getItem('currentUser'));
   //         return user;
   //       })
   //     );
-      
+
   //   }
   login(username: string, password: string): Observable<any> {
     return this.http
-      .post<any>(`${environment.apiUrl}auth/login.php`, { username, password })
+      .post<any>(`/api/auth/login.php`, { username, password })
       .pipe(
         map(({token}) => {
         let user: User = {
@@ -69,10 +69,10 @@ export class AuthService {
   );
   }
 
-  
+
   logout() {
     return this.http
-    .post<any>(`${environment.apiUrl}auth/logout.php`, {})
+    .post<any>(`/api/auth/logout.php`, {})
     .pipe(
       map(({token}) => {
         localStorage.removeItem('currentUser');

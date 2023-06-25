@@ -1,15 +1,14 @@
 <div class="listItem w-screen h-auto flex flex-col items-center text-slate-100 ">
-   
     <div class="flex p-4 m-3 flex-col h-auto  w-1/2 bg-primary rounded" >
         <div  class="flex flex-row justify-around items-center w-full text-rise" (click)="showMore()">
             <h1 id="currency-0" class="text-2xl font-bold">EUR</h1>
             <h1 id="percentage-0" class="text-2xl font-bold">12%</h1>
-            <h1 id="amount-0" class="text-2xl font-bold"> 1012.2</h1>            
+            <h1 id="amount-0" class="text-2xl font-bold"> 1012.2</h1>
         </div>
         <div *ngIf="getOpen()">
             <!--TODO: connect to backend-->
-            <form class="text-black flex flex-col p-4">  
-                <div class="flex flex-row justify-between">             
+            <form class="text-black flex flex-col p-4">
+                <div class="flex flex-row justify-between">
                     <select id="swaps" name="swaps" class="w-1/3 h-10 rounded">
                         <option value="EUR">EUR</option>
                         <option value="USD">USD</option>

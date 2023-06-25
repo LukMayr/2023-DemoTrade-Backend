@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-list-item',
@@ -10,8 +10,10 @@ export class ListItemComponent implements OnInit {
   private isConvertable: boolean = false;
   private amount: string = "";
 
-  constructor() { 
-    
+  @Input() stock: any;
+
+  constructor() {
+
   }
 
   amountChange(event: any): void{
