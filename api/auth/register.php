@@ -9,7 +9,9 @@ session_start();
 //api works with this line when using Web but not with Postman
 $_POST = json_decode(file_get_contents('php://input'), true);
 
-$env = parse_ini_file(__DIR__ . '/../../.env');
+$env = parse_ini_file(__DIR__ . '/../../.env/.env');
+
+
 $salt = $env['SALT'];
 
 function validateEmail($email) : bool {

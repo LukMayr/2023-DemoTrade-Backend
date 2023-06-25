@@ -18,9 +18,8 @@ $requestType = $_SERVER['REQUEST_METHOD'];
 $u_id = $user['u_id'];
 
 if ($requestType == 'GET') {
-     $id = $_GET['id'];
     if ($u_id != null) {
-        $portfolioController->getPortfoliosById($id);
+        $portfolioController->getPortfoliosById($u_id);
     } else {
         Response::error(HttpErrorCodes::HTTP_BAD_REQUEST, "You are not signed in")->send();
     }

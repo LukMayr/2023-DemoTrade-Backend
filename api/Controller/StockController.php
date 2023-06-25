@@ -1,5 +1,7 @@
 <?php
 
+use util\HttpErrorCodes;
+
 class StockController
 {
     private static ?mysqli $db = null;
@@ -18,16 +20,16 @@ class StockController
         self::$db = Connection::getConnection();
     }
 
-    public function createStock($portfolioId, $quantity, $price)
+    public function createStock($portfolioId, $quantity, $price, $currencyId)
     {
         if ($portfolioId == null || $quantity == null || $price == null) {
             Response::error(HttpErrorCodes::HTTP_BAD_REQUEST, "Missing parameters")->send();
         }
 
-        $statement = "INSERT INTO dt_stock (s_p_id, s_quantity, s_price) VALUES ($portfolioId, $quantity, $price);";
+        $statement = "INSERT INTO dt_stock (s_c_id,s_p_id, s_quantity, s_price) VALUES ($currencyId, $portfolioId, $quantity, $price);";
         if (self::$db->query($statement)) {
             $stockId = self::$db->insert_id;
-            $this->getStockById($stockId);
+            $this->getStockById($stockId, $portfolioId);
         } else {
             Response::error(HttpErrorCodes::HTTP_INTERNAL_SERVER_ERROR, "Stock not created")->send();
         }
@@ -46,20 +48,24 @@ class StockController
         Response::ok("Stock found", $stock)->send();
     }
 
-    public function buyStock($stockId,$portfolioId ,$quantity)
+    public function buyStock($stockName,$portfolioId,$quantity, $price)
     {
-        $statement = "SELECT s_quantity FROM dt_stock WHERE s_id = $stockId AND S_P_ID = $portfolioId;";
+        $statement  = "select c_id from DT_CURRENCY where c_name = '$stockName';";
+        $res = self::$db->query($statement);
+        $row = $res->fetch_assoc();
+        $currencyId = $row['c_id'];
+        $statement = "SELECT s_quantity FROM dt_stock WHERE S_C_ID = $currencyId AND S_P_ID = $portfolioId;";
         $res = self::$db->query($statement);
 
         if ($res->num_rows == 0) {
-            Response::error(HttpErrorCodes::HTTP_NOT_FOUND, "Stock not found")->send();
+            $this->createStock($portfolioId, $quantity, $price, $currencyId);
         }
 
         $row = $res->fetch_assoc();
         $currentQuantity = $row['s_quantity'];
         $newQuantity = $currentQuantity + $quantity;
 
-        $statement = "UPDATE dt_stock SET s_quantity = $newQuantity WHERE s_id = $stockId;";
+        $statement = "UPDATE dt_stock SET s_quantity = $newQuantity WHERE s_id = $;";
         if (self::$db->query($statement)) {
             Response::ok("Stock bought")->send();
         } else {
@@ -101,5 +107,18 @@ class StockController
         } else {
             Response::error(\util\HttpErrorCodes::HTTP_INTERNAL_SERVER_ERROR, "Stock not deleted")->send();
         }
+    }
+
+    public function getAllByPortfolioId($portfolioId)
+    {
+        $statement = "SELECT * FROM DT_STOCK WHERE S_P_ID = $portfolioId;";
+        $res = self::$db->query($statement);
+
+        $stocks = array();
+        while ($row = $res->fetch_assoc()) {
+            array_push($stocks, $row);
+        }
+
+        Response::ok("Stocks found", $stocks)->send();
     }
 }

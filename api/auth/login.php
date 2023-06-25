@@ -10,20 +10,18 @@ session_start();
 //api works with this line when using Web but not with Postman
 $_POST = json_decode(file_get_contents('php://input'), true);
 
-$env = parse_ini_file(__DIR__ . '/../../.env');
+$env = parse_ini_file(__DIR__ . '/../../.env/.env');
 $salt = $env['SALT'];
 
 $username = $_POST['username'];
 $password = $_POST['password'];
 
-echo "email: " . $username . "\n".
-        "password:" . $password;;
 
 if ($username == null || $password == null) {
-    echo "Missing parameters";
-    echo $username;
-    echo $password;
-    Response::error(HttpErrorCodes::HTTP_BAD_REQUEST, "Missing parameters")->send();
+    Response::error(HttpErrorCodes::HTTP_BAD_REQUEST, "Missing parameters", [
+        "username" => $username,
+        "password" => $password
+    ])->send();
 }
 
 $dbUser = UserController::getInstance()->getUserByUsername($username)[0];

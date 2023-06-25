@@ -18,7 +18,7 @@ CREATE TABLE DT_PORTFOLIO(
                              P_U_ID INT NOT NULL,
                              CONSTRAINT PK_P_ID PRIMARY KEY ( P_ID ),
                              CONSTRAINT FK_P_U_ID FOREIGN KEY ( P_U_ID )
-                                 REFERENCES DT_USER ( U_ID ),
+                                 REFERENCES DT_USER ( U_ID )
 );
 
 CREATE TABLE DT_STOCK(

@@ -1,0 +1,10 @@
+insert into DT_USER (u_id, u_username, u_email, u_password, u_created) values (11, 'Leland', 'lsissel0@e-recht24.de', '$2a$04$kRtKTXDic.sRsPT2ak4xUOJUbOl1wz1JQjMcYUWdjUbMAlveoJw3K', '2023-01-25 06:30:57');
+insert into DT_USER (u_id, u_username, u_email, u_password, u_created) values (12, 'Aldin', 'abarwell1@angelfire.com', '$2a$04$4r5gW7njNz2ksgqS32lRQu//YHtyB3XBoSjzvOx7P18eftlv/VI6m', '2022-08-21 20:27:31');
+insert into DT_USER (u_id, u_username, u_email, u_password, u_created) values (3, 'Marchall', 'mwarman2@behance.net', '$2a$04$VKeQ9XO5aF/RdhrianqeTOErHGo2Bmxszq3yL8UHnAA12acThvUE2', '2022-10-15 00:05:00');
+insert into DT_USER (u_id, u_username, u_email, u_password, u_created) values (4, 'Gaston', 'gdeldello3@walmart.com', '$2a$04$zqR9qTMcOPy3.RRZaYLA4exTI/vywcjIZWgYKBJEhZ3ftKa8biNzu', '2023-04-16 20:48:24');
+insert into DT_USER (u_id, u_username, u_email, u_password, u_created) values (5, 'Ilysa', 'iswale4@domainmarket.com', '$2a$04$TJ3rvmFShG7sT9n1K.JbQ.4lOd4GHcG311t9AoGPxakHnBT9cAzFm', '2022-08-29 20:56:44');
+insert into DT_USER (u_id, u_username, u_email, u_password, u_created) values (6, 'Mathew', 'mspataro5@drupal.org', '$2a$04$Xyb8Eo4H/cMOl/G8Hu9/nud./g5rA417ZnZGarjm4MGkKmifMD5DO', '2022-11-15 19:40:10');
+insert into DT_USER (u_id, u_username, u_email, u_password, u_created) values (7, 'Yehudit', 'ythowless6@ftc.gov', '$2a$04$7ik4bwumGt0h8Gx3IPaz9uXpquHs00OlC6wjYS/45AFM9EMK4jevq', '2022-08-12 22:07:24');
+insert into DT_USER (u_id, u_username, u_email, u_password, u_created) values (8, 'Myranda', 'mlamplugh7@is.gd', '$2a$04$dfVRmEuB3BkJlzi1gGOk1uxvfjR1PfgYo9sX8eM.AaagLjhllUXLm', '2022-07-24 20:13:10');
+insert into DT_USER (u_id, u_username, u_email, u_password, u_created) values (9, 'Brnaba', 'bpawle8@senate.gov', '$2a$04$7jdUsG35uLLsby5kbISWCu94Os2KIKClf4KSXR4T0b91Rbin9LEs2', '2022-11-11 00:27:47');
+insert into DT_USER (u_id, u_username, u_email, u_password, u_created) values (10, 'Palmer', 'pbritcher9@cloudflare.com', '$2a$04$tLUKucHxx.jdDUVQduPOyeMRhC2UD56HvIDWMyJorigurazqfLrRy', '2023-03-16 08:03:52');

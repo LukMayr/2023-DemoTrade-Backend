@@ -3,6 +3,7 @@
 use util\HttpErrorCodes;
 require_once '../utils/Response.php';
 require_once '../Connection.php';
+require_once '../Controller/PortfolioController.php';
 class UserController
 {
 
@@ -60,6 +61,10 @@ public static function getInstance(): UserController
                 while ($row = $res->fetch_assoc()) {
                     $myArray[] = $row;
                 }
+                $user = $myArray[0];
+
+                $portfolio = PortfolioController::getInstance()->createPortfolio($user['u_id']);
+                
                 Response::created("User created", $myArray)->send();
             }
         } else {
@@ -83,6 +88,16 @@ public static function getInstance(): UserController
     public function getUserByUsername($username)
     {
         $statement = "SELECT u_id, u_username, u_email, u_password  FROM dt_user where u_username = '$username';";
+        $res = self::$db->query($statement);
+
+        while ($row = $res->fetch_assoc()) {
+            $myArray[] = $row;
+        }
+        return $myArray;
+    }
+
+    public function getUserByEmail($email) {
+        $statement = "SELECT u_id, u_username, u_email, u_password  FROM dt_user where u_email = '$email';";
         $res = self::$db->query($statement);
 
         while ($row = $res->fetch_assoc()) {
