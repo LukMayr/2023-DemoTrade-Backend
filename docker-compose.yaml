@@ -1,0 +1,46 @@
+services:
+  db:
+    container_name: demotrade-mariadb
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: myrootpassword
+      MYSQL_DATABASE: mydb
+      MYSQL_USER: me
+      MYSQL_PASSWORD: mypassword
+    volumes:
+      - ./db_data:/var/lib/mysql
+    networks:
+      - demotrade
+
+  phpmyadmin:
+    container_name: demotrade-phpmyadmin
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - 8090:80
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: myrootpassword
+    depends_on:
+      - db
+    networks:
+      - demotrade
+
+  web:
+    container_name: demotrade
+    build:
+      context: .
+      dockerfile: PHP.Dockerfile
+    volumes:
+      - ./api/:/var/www/html/api/
+      - ./.env/:/var/www/html/.env/
+    ports:
+      - 8080:80
+    networks:
+      - demotrade
+
+
+networks:
+  demotrade:
+    driver: bridge
