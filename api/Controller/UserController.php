@@ -50,6 +50,7 @@ public static function getInstance(): UserController
 
     public function createUserFromRequest($userName, $email, $password)
     {
+        echo $userName . $email . $password;
         if ($userName == null || $email == null || $password == null) {
             Response::error(HttpErrorCodes::HTTP_BAD_REQUEST, "Missing parameters")->send();
         }

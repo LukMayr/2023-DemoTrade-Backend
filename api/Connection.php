@@ -5,7 +5,7 @@ class Connection{
     public static function getConnection()
     {
 
-        $env = parse_ini_file(__DIR__ . '/../.env/.env');
+        $env = parse_ini_file(__DIR__ . '/../env/.env');
 
         
 

@@ -1,6 +1,7 @@
-# scrum task manager
+# Demotrade Backend
 
-This is the backend Repo for the scrum task manager.
+## Description
+Demotrade is a web application that allows users to trade stocks with virtual money. The application is built with a Angular frontend and a PHP backend. The backend is responsible for handling the database and the API.
 
 ## Languages
 
@@ -13,5 +14,5 @@ PHP
 ## Run
 
 ```bash
-php -S 0.0.0.0:4000 -t ./
+docker-compose up 
 ```
